@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Basics</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.css">
+
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+    <section id="app" class="section container">
+        <p>
+            Name: {{ name }}<br />
+            Username: {{ username }}<br />
+            Email: {{ email }}
+        </p>
+
+        <a class="button is-info" v-on:click="celebrate">
+            Do the celebration!
+        </a>
+    </section>
+    
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                name: 'David Stephenson',
+                usrname: 'davidflores',
+                email: 'derldalfor100@gmail.com'
+            },
+            methods: {
+                celebrate: function() {
+                    alert(`${this.name} is celebrating!`);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
