@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Template Lists</title>
+
+  <!-- css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.css">
+
+  <!-- js -->
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <!-- our template -->
+  <section id="app" class="section container">
+    <h2 class="title">Plain Javascript</h2>
+    <u class="plain-js-user-list"></u>
+    <br>
+    <h2 class="title">Vue</h2>
+    <u class="user-list">
+        <li v-for="user in users">
+            <img width="200px" height="200px" :src="user.avatar" alt=""><br>
+            Name: {{ user.name }}<br>
+            Username: {{ user.username }}
+        </li>
+    </u>
+  </section>
+
+  <!-- our javascript -->
+  <script>    
+    const users = [
+      {
+        name: 'Roman',
+        username: 'romancousin',
+        avatar: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Frsgames.hs.llnwd.net%2Fo10%2FZTM1MTNmMmVjYjRhNWViNWQ3ZmZhOGUyMDI2OGJlYzY%3D%2Fimages%2Fshadows%2Fchar_roman.png&f=1&nofb=1'
+      },
+      {
+        name: 'Niko',
+        username: 'nikothehero',
+        avatar: 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.game-art-hq.com%2Fwp-content%2Fuploads%2F2017%2F03%2FNiko-Bellic-GTA-IV-Render-Art.png&f=1&nofb=1'
+      },
+      {
+        name: 'Johnny',
+        username: 'johnnybike',
+        avatar: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.giantbomb.com%2Fuploads%2Foriginal%2F1%2F10354%2F2550295-johnny_klebitz_by_kenin140-d3g89gt.png&f=1&nofb=1'
+      }
+    ];
+
+    // plain javascript ===========================
+      const userList = document.querySelector('.plain-js-user-list');
+      users.forEach(injectUserIntoList);
+
+      function injectUserIntoList(user) {
+        const userItem = document.createElement('li');
+          userItem.innerHTML = `
+          <img src="${user.avatar}" width="200" height="200"><br>
+          Name: ${user.name}<br>
+          Username: ${user.username}
+          `;
+          userList.appendChild(userItem);
+      }
+
+    // vue =======================================================
+    const app = new Vue({
+      el: '#app',
+      data: {
+          users: users
+      }
+    });
+  </script>
+</body>
+</html>
